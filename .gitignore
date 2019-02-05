@@ -1,0 +1,6 @@
+.DS_Store
+*ipynb_checkpoints*
+*/assets/1547177135_gsknn_SVD.pkl
+*/assets/gsknn_SVD.pkl
+*/assets/*
+reddit_NLP/data/*

@@ -20,7 +20,7 @@ The problem of de novo text generation has direct application in fields such as 
 Exploring word-level models based on an LSTM neural network architecture, my model was able to achieve 86.9% training accuracy and generate convincing lyrics that preserve basic song structure.
 
 Here is an example song generated with the seed 'eyes are for lovers':
-![eyes are for lovers](/images/m1_eyes.png)
+![eyes are for lovers](images/m1_eyes.png)
 
 The dataset was collected by querying the Spotify API [(source)](https://developer.spotify.com/documentation/web-api/)for Spotify Curated playlist track lists from the Romance genre and then scraping the Genius lyric database [(source)](https://genius.com/developers) to build a corpus of 1781 tracks and 12334 unique words.
 
@@ -31,7 +31,7 @@ Predictive text generation models have been deployed by companies such as Google
 
 While RNNs have been shown to produce strong results for more shallow networks and shorter texts, their performance tends to drop off with deeper architectures. This is due to a property dubbed the vanishing gradient problem, which describes an issue with downstream layers losing the ability to tune the weights of earlier layers. To address this issue, Long Short Term Memory (LSTM) networks allow samples to pass directly through to downstream layers, thereby preserving a direct path for tuning via forward and back-propagation. [(source)](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 
-![rnn vs lstm](/images/rnn_lstm.jpg) *An unrolled RNN (top) vs LSTM (bottom) [(source)](https://www.oreilly.com/ideas/introduction-to-lstms-with-tensorflow)*
+![rnn vs lstm](images/rnn_lstm.jpg) *An unrolled RNN (top) vs LSTM (bottom) [(source)](https://www.oreilly.com/ideas/introduction-to-lstms-with-tensorflow)*
 
 A single LSTM cell has 3 states: a forget gate, a memory gate, and a sigmoid output layer. The first layer determines what information is kept from previous states, the next layer determines what new information will be added to the cell, and the final layer determines what information will be passed to the next LSTM cell. In this way, LSTM cells are able to avoid the problem of the vanishing gradient.
 
@@ -58,9 +58,9 @@ Creating a python-based word-level text generator, I decided to implement a slid
 
 Based on song structure findings during EDA, I decided on an input sequence of four words, an output sequence of one word, and a 250 word song length. This corresponds to an average of 9.1 words/line and 282.6 words/track seen in the dataset. I also chose to keep '\n' characters in an effort to preserve song structure.
 
-![mean words per line](/images/words_line.png)
+![mean words per line](images/words_line.png)
 
-![words per track](/images/words_track.png)
+![words per track](images/words_track.png)
 
 Based on track length, I decided to build my model with an embedding layer followed by a first LSTM layer of 300 nodes, corresponding to roughly 1 node per word in the track. This feeds into a second LSTM layer with 150 nodes, followed by a Dense layer with 100 nodes and finally an output layer with the same shape as the training corpus.
 
@@ -84,17 +84,17 @@ This framework produced 250 word lyric sets that showed minimal repetition, main
 
 Reviewing song structure as a repetition grid, here is the output for the model generated track from above:
 
-![eyes_grid](/images/eyes_grid.png) *Model-generated song repetition grid without pre-trained embeddings*
+![eyes_grid](images/eyes_grid.png) *Model-generated song repetition grid without pre-trained embeddings*
 
-![eyes_grid](/images/always_grid.png) *Model-generated song repetition grid with pre-trained embeddings*
+![eyes_grid](images/always_grid.png) *Model-generated song repetition grid with pre-trained embeddings*
 
-![eyes_grid](/images/always_be.png) *Lyrics generated from the seed 'always be there love'*
+![eyes_grid](images/always_be.png) *Lyrics generated from the seed 'always be there love'*
 
 In this grid, the vertical and horizontal axis represent each word in the track. If a word is repeated, the cell is filled, otherwise it is left white. This can be compared to a real track below. Note that the song below has about 30% higher word repetition (~ 0.64, average for the dataset compared to 0.39 above). It is possible that as the model becomes better optimized these structural components will become more well-defined.
 
-![real_grid](/images/teddy_grid.png)*Real song repetition grid*
+![real_grid](images/teddy_grid.png)*Real song repetition grid*
 
-![teddy](/images/teddy.png)*Lyrics for When Somebody Loves You Back, Teddy Pendergrass [(source)](https://genius.com/Teddy-pendergrass-when-somebody-loves-you-back-lyrics)*
+![teddy](images/teddy.png)*Lyrics for When Somebody Loves You Back, Teddy Pendergrass [(source)](https://genius.com/Teddy-pendergrass-when-somebody-loves-you-back-lyrics)*
 
 ## Business Recommendations<a name="section6"></a>
 Based on my findings, it's clear that LSTM models provide a solid architecture for language processing and text generation. This model is robust enough to produce entertaining results that can be deployed in a consumer level product with minimal additional front-end development.

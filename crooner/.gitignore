@@ -1,0 +1,17 @@
+*/.ipynb_checkpoints
+*/.DS_Store
+/assets/*cred.py
+/assets/*LSTM_Model.pkl
+.ipynb_checkpoints
+.DS_Store
+/assets/*model.h5
+/assets/*weights.h5
+/assets/*.npy
+/assets/*ycat.pkl
+<<<<<<< HEAD
+/assets/*Xreshape.pkl
+=======
+/assets/*xreshape.pkl
+/glove_data
+models/
+>>>>>>> origin

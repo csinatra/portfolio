@@ -1,4 +1,4 @@
-# Ames Housing Project
+# Ames Housing Price Predictions
 
 ## Problem Statement
 

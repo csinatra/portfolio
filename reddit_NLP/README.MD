@@ -1,4 +1,4 @@
-# NLP Analysis of Political Subreddits
+# Political Subgroup Identification on Reddit
 
 ## Problem Statement
 The purpose of this project is to use Natural Language Processing techniques to identify linguistic differences between closely related but ideologically distinct political subgroups. In this case, the groups of interest are Conservatives and Libertarians. Creating accurate classification models has application in assessing journalistic sources as well as optimizing communications to create a deeper connection with the target audience.

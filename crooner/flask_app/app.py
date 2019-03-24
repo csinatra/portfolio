@@ -1,4 +1,4 @@
-import keras, pickle, requests, time
+import keras, pickle, requests
 import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
@@ -8,7 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from flask import Flask, render_template, url_for, redirect, request, session
+from flask import Flask, render_template, url_for, redirect, request
 
 app = Flask(__name__)
 
@@ -20,20 +20,19 @@ def index():
 
 def generate_lyrics(seq_len = 4,
                     song_len = 250,
-                    temperature = 1.2):
+                    temperature = 1.0):
     
-    with open('../models/cLSTM315-1015/1549314666_LSTM350_1015tokenizer.pkl', 'rb') as f:
+    with open('../models/cLSTM315-1015/*.pkl', 'rb') as f:
         tokenizer = pickle.load(f)
-           
-    model = keras.models.load_model('../models/cLSTM315-1015/1549314666_LSTM315_1015model.h5')
-         
+    
+    model = keras.models.load_model('../models/cLSTM315-1015/*.h5')
+
     seed = request.form['seed']
     
     if not seed:
         return redirect(url_for('index'))
     
     seed_clean = seed.lower().split(' ')
-    print(seed_clean)
     doc = []
     
     while len(doc) < song_len:
@@ -60,26 +59,7 @@ def generate_lyrics(seq_len = 4,
     result = ' '.join(doc)
     result = result.split('\n')
     
-    session['result'] = result
-    session['tokenizer'] = tokenizer 
-    session['model'] = model
-    
     return render_template('lyrics.html', result=result, seed=seed)
-    
-@app.route('/save', methods=['GET','POST'])
-    
-def save_lyrics(name, email, seed, song):
-    name = request.form['name']
-    name = name.lower().strip()
-    email = request.form['email']
-    seed = request.form['seed']
-    song = session.get('result', None)
-    
-    song += f'\n\n name: {name} \n email: {email} \n seed: {seed}'    
-    
-    now = round(time.time())
-    with open(f'songs/{name}_{now}.txt', "w") as f:
-        print(song, file=f)
-    
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

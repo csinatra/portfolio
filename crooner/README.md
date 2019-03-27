@@ -12,9 +12,7 @@
 8. [Conclusion](#section8)
 
 ## Problem Statement<a name="section1"></a>
-This project aims to build a word-level love-song lyric generator trained on a real-world dataset made up of existing tracks and returning entirely new song lyrics based on a user generated seed text.
-
-The problem of de novo text generation has direct application in fields such as social media content generation, direct response marketing, predictive text generation, or text-based customer service correspondence. This may also serve as a foundational underpinning for complete song or voice generation models which may be used across a variety of Enterprise applications.
+The problem of de novo text generation has direct application in fields such as social media, content generation, direct response marketing, predictive text, and customer service Automation. To explore this space, this project aims to build a love-song lyric generator trained on a real-world dataset and returning entirely new song lyrics based on a user generated seed text. This may serve as a foundational underpinning for complete song or voice generation models which may be used across a variety of Enterprise applications.
 
 ## Executive Summary<a name="section2"></a>
 Exploring word-level models based on an LSTM neural network architecture, my model was able to achieve 86.9% training accuracy and generate convincing lyrics that preserve basic song structure.
